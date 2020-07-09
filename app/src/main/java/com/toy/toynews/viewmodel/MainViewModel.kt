@@ -31,6 +31,6 @@ class MainViewModel @ViewModelInject constructor(private val newsRepository: New
             }
             _isLoadFinished.call()
         },
-        indicator = false)
+        indicator = true)
     }
 }
