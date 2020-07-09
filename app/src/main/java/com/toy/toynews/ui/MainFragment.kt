@@ -1,5 +1,6 @@
 package com.toy.toynews.ui
 
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -66,5 +67,35 @@ class MainFragment : BaseFragment<MainViewModel> (){
                 }
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.e("TRACE", "Main onResume")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.e("TRACE", "Main onPause")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.e("TRACE", "Main onStop")
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        Log.e("TRACE", "Main onDestroyView")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.e("TRACE", "Main onDestroy")
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        Log.e("TRACE", "Main onDetach")
     }
 }

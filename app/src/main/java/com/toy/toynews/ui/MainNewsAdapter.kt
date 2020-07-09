@@ -34,8 +34,13 @@ class MainNewsAdapter(private val newsList: ArrayList<Article>) : RecyclerView.A
                 img = img.replace("http","https")
             }
             holder.view.item_date.text = item.publishedAt.substringBefore("T")
+
             //holder.view.item_image.load(img)
-            Picasso.get().load(img).into(holder.view.item_image)
+            if(img.isEmpty()){
+                //Do Nothing
+            }
+            else Picasso.get().load(img).into(holder.view.item_image)
+
             Log.e("url",img)
 
             holder.view.setOnClickListener {

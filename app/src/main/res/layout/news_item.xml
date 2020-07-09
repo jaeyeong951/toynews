@@ -14,6 +14,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/item_source"
         android:layout_marginHorizontal="25dp"
+        android:src="@drawable/default_img"
         />
     <TextView
         android:id="@+id/item_source"
