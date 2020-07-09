@@ -1,4 +1,4 @@
-#Toy News
+# Toy News
 
 This is Android Application provide news from various countries.
 
