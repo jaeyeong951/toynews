@@ -7,10 +7,11 @@
     android:background="@android:color/transparent"
     android:orientation="vertical">
     <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/loading_animation"
+        android:id="@+id/preload_lottie_view"
         android:layout_width="240dp"
         android:layout_height="240dp"
-        app:lottie_fileName="book-animation.json"
+        app:lottie_fileName="loading-animation.json"
+        app:lottie_enableMergePathsForKitKatAndAbove="true"
         app:lottie_loop="true"
         app:lottie_autoPlay="true"/>
 

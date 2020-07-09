@@ -21,6 +21,5 @@ class LoadingIndicator(context: Context?) : Dialog(context!!) {
 
     override fun setOnShowListener(listener: DialogInterface.OnShowListener?) {
         super.setOnShowListener(listener)
-        Log.d("test", "hey hey ")
     }
 }
