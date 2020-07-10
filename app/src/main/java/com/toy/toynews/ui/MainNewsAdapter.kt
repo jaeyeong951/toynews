@@ -7,10 +7,12 @@ import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
+import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import com.toy.toynews.R
 import com.toy.toynews.dto.Article
 import kotlinx.android.synthetic.main.news_item.view.*
+import java.lang.Exception
 
 class MainNewsAdapter(private val newsList: ArrayList<Article>) : RecyclerView.Adapter<MainNewsAdapter.ViewHolder>(){
     class ViewHolder(val view: View):RecyclerView.ViewHolder(view)
@@ -39,9 +41,20 @@ class MainNewsAdapter(private val newsList: ArrayList<Article>) : RecyclerView.A
             if(img.isEmpty()){
                 //Do Nothing
             }
-            else Picasso.get().load(img).into(holder.view.item_image)
+            else Picasso.get().load(img).into(holder.view.item_image, object : Callback{
+                override fun onSuccess() {
+                    Log.e("Image Load Success!",img)
+                    holder.view.item_loading.visibility = View.GONE
+                    holder.view.item_image.visibility = View.VISIBLE
+                }
 
-            Log.e("url",img)
+                override fun onError(e: Exception?) {
+                    Log.e("Image Load Failed :(",img)
+                    Picasso.get().load(R.drawable.default_img).into(holder.view.item_image)
+                    holder.view.item_loading.visibility = View.GONE
+                    holder.view.item_image.visibility = View.VISIBLE
+                }
+            })
 
             holder.view.setOnClickListener {
                 val action

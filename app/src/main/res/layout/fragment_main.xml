@@ -4,34 +4,42 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.MainFragment">
-    <com.google.android.material.switchmaterial.SwitchMaterial
-        android:id="@+id/switch_theme"
-        android:layout_width="wrap_content"
+    tools:context=".ui.MainFragment"
+    android:stateListAnimator="@animator/toolbar_animation">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main_header"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Theme"
-        app:switchPadding="10dp"
-        android:layout_margin="20dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.appcompat.widget.AppCompatSpinner
-        android:id="@+id/main_spinner"
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="20dp"
-        />
+        android:paddingBottom="20dp">
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switch_theme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Theme"
+            app:switchPadding="10dp"
+            android:layout_margin="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/main_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_margin="20dp"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/main_list"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@+id/main_spinner"
+        app:layout_constraintTop_toBottomOf="@+id/main_header"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/news_item"
-        android:layout_marginTop="20dp"
         />
 </androidx.constraintlayout.widget.ConstraintLayout>
