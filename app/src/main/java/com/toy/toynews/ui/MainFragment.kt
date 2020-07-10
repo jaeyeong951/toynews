@@ -67,9 +67,6 @@ class MainFragment : BaseFragment<MainViewModel> (){
                 }
             }
         }
-        main_list.setOnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
-            main_header.isSelected = main_list.canScrollVertically(-1)
-        }
     }
 
     override fun onResume() {
