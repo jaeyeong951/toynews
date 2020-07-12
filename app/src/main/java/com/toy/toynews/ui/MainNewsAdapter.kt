@@ -11,11 +11,16 @@ import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import com.toy.toynews.R
 import com.toy.toynews.dto.Article
+import kotlinx.android.extensions.LayoutContainer
+import kotlinx.android.synthetic.main.news_item.*
 import kotlinx.android.synthetic.main.news_item.view.*
 import java.lang.Exception
 
 class MainNewsAdapter(private val newsList: ArrayList<Article>) : RecyclerView.Adapter<MainNewsAdapter.ViewHolder>(){
-    class ViewHolder(val view: View):RecyclerView.ViewHolder(view)
+    class ViewHolder(val view: View):RecyclerView.ViewHolder(view), LayoutContainer {
+        override val containerView: View?
+            get() = view
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.news_item, parent, false))
@@ -26,6 +31,47 @@ class MainNewsAdapter(private val newsList: ArrayList<Article>) : RecyclerView.A
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        Log.e("LOG", "onBingViewHolder of position $position is called!!")
+        newsList[position].let { item->
+            var img = item.urlToImage
+            item.title.let {
+                holder.item_title.text = it.substringBefore(" - ")
+                holder.item_source.text = it.substringAfter(" - ")
+            }
+            if(img!!.substringBefore("://") == "http"){
+                img = img.replace("http","https")
+            }
+            holder.item_date.text = item.publishedAt.substringBefore("T")
+            //holder.view.item_image.load(img)
+            if(img.isEmpty()){
+                //Do Nothing
+            }
+            else Picasso.get().load(img).into(holder.item_image, object : Callback{
+                override fun onSuccess() {
+                    //Log.e("Image Load Success!",img)
+                    holder.item_loading.visibility = View.GONE
+                    holder.item_image.visibility = View.VISIBLE
+                }
+
+                override fun onError(e: Exception?) {
+                    //Log.e("Image Load Failed :(",img)
+                    Picasso.get().load(R.drawable.default_img).into(holder.item_image)
+                    holder.item_loading.visibility = View.GONE
+                    holder.item_image.visibility = View.VISIBLE
+                }
+            })
+
+            holder.view.setOnClickListener {
+                val action
+                        = MainFragmentDirections.actionMainFragmentToWebViewFragment(item.url)
+                it.findNavController().navigate(action)
+            }
+        }
+    }
+
+    /*
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        Log.e("LOG", "onBingViewHolder of position $position is called!!")
         newsList[position].let { item->
             var img = item.urlToImage
             item.title.let {
@@ -36,20 +82,19 @@ class MainNewsAdapter(private val newsList: ArrayList<Article>) : RecyclerView.A
                 img = img.replace("http","https")
             }
             holder.view.item_date.text = item.publishedAt.substringBefore("T")
-
             //holder.view.item_image.load(img)
             if(img.isEmpty()){
                 //Do Nothing
             }
             else Picasso.get().load(img).into(holder.view.item_image, object : Callback{
                 override fun onSuccess() {
-                    Log.e("Image Load Success!",img)
+                    //Log.e("Image Load Success!",img)
                     holder.view.item_loading.visibility = View.GONE
                     holder.view.item_image.visibility = View.VISIBLE
                 }
 
                 override fun onError(e: Exception?) {
-                    Log.e("Image Load Failed :(",img)
+                    //Log.e("Image Load Failed :(",img)
                     Picasso.get().load(R.drawable.default_img).into(holder.view.item_image)
                     holder.view.item_loading.visibility = View.GONE
                     holder.view.item_image.visibility = View.VISIBLE
@@ -63,4 +108,5 @@ class MainNewsAdapter(private val newsList: ArrayList<Article>) : RecyclerView.A
             }
         }
     }
+    * */
 }

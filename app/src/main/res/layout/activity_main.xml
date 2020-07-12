@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity"
-    android:background="@color/design_default_color_surface">
+    android:background="@color/background">
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/main_toolbar"
         android:layout_width="match_parent"
@@ -19,7 +19,7 @@
             android:textStyle="bold"
             android:textSize="20sp"
             android:gravity="center"
-            android:textColor="@color/browser_actions_text_color"
+            android:textColor="@color/font_primary"
             />
     </androidx.appcompat.widget.Toolbar>
     <fragment

@@ -6,6 +6,6 @@
     android:layout_height="45dp"
     android:paddingHorizontal="15dp"
     android:paddingVertical="10dp"
-    android:textColor="@android:color/black"
+    android:textColor="@color/font_primary"
     android:textSize="15sp"
     />

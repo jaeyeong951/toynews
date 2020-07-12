@@ -16,7 +16,7 @@ class MainViewModel @ViewModelInject constructor(private val newsRepository: New
 
     var newsList: ArrayList<Article> = ArrayList()
 
-    fun newsListClear(){
+    private fun newsListClear(){
         newsList.clear()
     }
 

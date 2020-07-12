@@ -18,8 +18,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         this.window.apply {
-            decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-            statusBarColor = Color.WHITE
+            //decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+            //statusBarColor = resources.getColor(R.color.colorPrimaryDark)
         }
 
         setSupportActionBar(main_toolbar)
