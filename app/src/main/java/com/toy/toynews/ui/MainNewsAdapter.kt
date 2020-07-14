@@ -4,6 +4,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
@@ -16,7 +17,11 @@ import kotlinx.android.synthetic.main.news_item.*
 import kotlinx.android.synthetic.main.news_item.view.*
 import java.lang.Exception
 
-class MainNewsAdapter(private val newsList: ArrayList<Article>) : RecyclerView.Adapter<MainNewsAdapter.ViewHolder>(){
+class MainNewsAdapter(private val newsList: ArrayList<Article>, val listener: OnItemClickListener) : RecyclerView.Adapter<MainNewsAdapter.ViewHolder>(){
+    interface OnItemClickListener {
+        fun onItemClick(v: View, position: Int)
+    }
+
     class ViewHolder(val view: View):RecyclerView.ViewHolder(view), LayoutContainer {
         override val containerView: View?
             get() = view
@@ -64,9 +69,7 @@ class MainNewsAdapter(private val newsList: ArrayList<Article>) : RecyclerView.A
             })
 
             holder.view.setOnClickListener {
-                val action
-                        = MainFragmentDirections.actionMainFragmentToWebViewFragment(item.url)
-                it.findNavController().navigate(action)
+                listener.onItemClick(holder.itemView, position)
             }
         }
     }

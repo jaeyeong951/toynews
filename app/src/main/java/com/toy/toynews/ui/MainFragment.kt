@@ -6,6 +6,8 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.toy.toynews.R
 import com.toy.toynews.base.BaseFragment
 import com.toy.toynews.viewmodel.MainViewModel
@@ -22,7 +24,13 @@ class MainFragment : BaseFragment<MainViewModel> (){
     override fun initView() {
         viewModel.loadNews(country = "kr")
         viewModel.isLoadFinished.observe(this, Observer {
-            main_list.adapter = MainNewsAdapter(viewModel.newsList)
+            main_list.adapter = MainNewsAdapter(viewModel.newsList, object: MainNewsAdapter.OnItemClickListener {
+                override fun onItemClick(v: View, position: Int) {
+                    val action
+                            = MainFragmentDirections.actionMainFragmentToWebViewFragment(viewModel.newsList.get(position).url)
+                    findNavController().navigate(action)
+                }
+            })
         })
         activity?.let {
             var country = "kr"

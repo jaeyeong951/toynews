@@ -33,4 +33,9 @@ class MainViewModel @ViewModelInject constructor(private val newsRepository: New
         },
         indicator = true)
     }
+
+    override fun onCleared() {
+        super.onCleared()
+        Log.e("viewModel","OnCLEARED")
+    }
 }
