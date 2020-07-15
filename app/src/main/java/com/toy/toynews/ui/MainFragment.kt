@@ -25,9 +25,9 @@ class MainFragment : BaseFragment<MainViewModel> (){
 
     override fun initView() {
         if(viewModel.newsList.isEmpty()) viewModel.loadNews(country = "kr")
-        main_list.adapter = MainNewsAdapter(viewModel.newsList, ItemClick)
+        main_list.adapter = MainNewsAdapter(viewModel.newsList, itemClick)
         viewModel.isLoadFinished.observe(this, Observer {
-            main_list.adapter = MainNewsAdapter(viewModel.newsList, ItemClick)
+            main_list.adapter = MainNewsAdapter(viewModel.newsList, itemClick)
         })
         activity?.let {
             var country = "kr"
@@ -77,7 +77,7 @@ class MainFragment : BaseFragment<MainViewModel> (){
             }
         }
     }
-    private val ItemClick = object : MainNewsAdapter.OnItemClickListener {
+    private val itemClick = object : MainNewsAdapter.OnItemClickListener {
         override fun onItemClick(v: View, position: Int) {
             val action
                     = MainFragmentDirections.actionMainFragmentToWebViewFragment(viewModel.newsList[position].url)
