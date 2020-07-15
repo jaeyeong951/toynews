@@ -99,6 +99,7 @@ class MainActivity : AppCompatActivity() {
                 Log.e("ON_DETACHED", f.toString())
             }
 
+
         }, true)
 
         var appBarConfiguration  =

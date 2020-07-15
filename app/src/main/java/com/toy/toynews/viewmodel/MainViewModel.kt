@@ -25,6 +25,7 @@ class MainViewModel @ViewModelInject constructor(private val newsRepository: New
                 country : String){
         apiCall(newsRepository.getNews(keyword, category, country),
         onSuccess = Consumer {
+            Log.e("loadNews is Called!","country = $country")
             newsListClear()
             for(i in it.articles) {
                 i.urlToImage?.let { newsList.add(i) }

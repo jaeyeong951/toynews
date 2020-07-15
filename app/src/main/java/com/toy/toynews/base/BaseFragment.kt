@@ -2,6 +2,7 @@ package com.toy.toynews.base
 
 import android.app.Dialog
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,6 +26,7 @@ abstract class BaseFragment<VM : BaseViewModel> : Fragment(){
         savedInstanceState: Bundle?
     ): View? {
         mLoadingIndicator = context?.let { LoadingIndicator(it) }
+        Log.e("onCreateView","onCreateView")
 //        return super.onCreateView(inflater, container, savedInstanceState)
         return inflater.inflate(layoutResourceId, container, false)
     }
