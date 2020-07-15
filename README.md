@@ -1,11 +1,22 @@
 # Toy News
 
+
+
+### This is an Android Application provides news from various countries and sources.
+
+### It is made to be used as an example to build modern android application.
+
 ---
 
-This is Android Application provides news from various countries.
-
-It is made for improving android development skills
-
-e.g. **MVVM architecture pattern, DI with Hilt, RxJava, Retrofit, Repository Pattern, Navigation Component, Single Activity, Motion Layout and Kotlin**
+## Keywords
+- MVVM architecture pattern
+- DI with Hilt
+- RxJava
+- Retrofit
+- Repository Pattern
+- Navigation Component
+- Single Activity
+- Motion Layout 
+- and Kotlin
 
 ![](https://media.giphy.com/media/jtnmaMxTYgLftrXk3T/giphy.gif)
