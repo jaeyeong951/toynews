@@ -1,10 +1,12 @@
 package com.toy.toynews
 
-import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.View
-import androidx.drawerlayout.widget.DrawerLayout
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -26,6 +28,78 @@ class MainActivity : AppCompatActivity() {
 
         val host = nav_host_fragment as NavHostFragment
         val navController = host.navController
+
+        supportFragmentManager.registerFragmentLifecycleCallbacks(object :
+            FragmentManager.FragmentLifecycleCallbacks() {
+            override fun onFragmentCreated(
+                fm: FragmentManager,
+                f: Fragment,
+                savedInstanceState: Bundle?
+            ) {
+                super.onFragmentCreated(fm, f, savedInstanceState)
+                Log.e("ON_CREATED", f.toString())
+            }
+
+            override fun onFragmentAttached(fm: FragmentManager, f: Fragment, context: Context) {
+                super.onFragmentAttached(fm, f, context)
+                Log.e("ON_ATTACHED", f.toString())
+            }
+
+            override fun onFragmentViewCreated(
+                fm: FragmentManager,
+                f: Fragment,
+                v: View,
+                savedInstanceState: Bundle?
+            ) {
+                super.onFragmentViewCreated(fm, f, v, savedInstanceState)
+                Log.e("ON_VIEW_CREATED", f.toString())
+            }
+
+            override fun onFragmentActivityCreated(
+                fm: FragmentManager,
+                f: Fragment,
+                savedInstanceState: Bundle?
+            ) {
+                super.onFragmentActivityCreated(fm, f, savedInstanceState)
+                Log.e("ON_ACTIVITY_CREATED", f.toString())
+            }
+
+            override fun onFragmentStarted(fm: FragmentManager, f: Fragment) {
+                super.onFragmentStarted(fm, f)
+                Log.e("ON_STARTED", f.toString())
+            }
+
+            override fun onFragmentResumed(fm: FragmentManager, f: Fragment) {
+                super.onFragmentResumed(fm, f)
+                Log.e("ON_RESUMED", f.toString())
+            }
+
+            override fun onFragmentPaused(fm: FragmentManager, f: Fragment) {
+                super.onFragmentPaused(fm, f)
+                Log.e("ON_PAUSED", f.toString())
+            }
+
+            override fun onFragmentStopped(fm: FragmentManager, f: Fragment) {
+                super.onFragmentStopped(fm, f)
+                Log.e("ON_STOPPED", f.toString())
+            }
+
+            override fun onFragmentViewDestroyed(fm: FragmentManager, f: Fragment) {
+                super.onFragmentViewDestroyed(fm, f)
+                Log.e("ON_VIEW_DESTROYED", f.toString())
+            }
+
+            override fun onFragmentDestroyed(fm: FragmentManager, f: Fragment) {
+                super.onFragmentDestroyed(fm, f)
+                Log.e("ON_DESTROYED", f.toString())
+            }
+
+            override fun onFragmentDetached(fm: FragmentManager, f: Fragment) {
+                super.onFragmentDetached(fm, f)
+                Log.e("ON_DETACHED", f.toString())
+            }
+
+        }, true)
 
         var appBarConfiguration  =
             AppBarConfiguration(setOf(R.id.mainFragment))

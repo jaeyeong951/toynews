@@ -27,7 +27,7 @@ class MainFragment : BaseFragment<MainViewModel> (){
             main_list.adapter = MainNewsAdapter(viewModel.newsList, object: MainNewsAdapter.OnItemClickListener {
                 override fun onItemClick(v: View, position: Int) {
                     val action
-                            = MainFragmentDirections.actionMainFragmentToWebViewFragment(viewModel.newsList.get(position).url)
+                            = MainFragmentDirections.actionMainFragmentToWebViewFragment(viewModel.newsList[position].url)
                     findNavController().navigate(action)
                 }
             })
@@ -75,35 +75,5 @@ class MainFragment : BaseFragment<MainViewModel> (){
                 }
             }
         }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        Log.e("TRACE", "Main onResume")
-    }
-
-    override fun onPause() {
-        super.onPause()
-        Log.e("TRACE", "Main onPause")
-    }
-
-    override fun onStop() {
-        super.onStop()
-        Log.e("TRACE", "Main onStop")
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        Log.e("TRACE", "Main onDestroyView")
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.e("TRACE", "Main onDestroy")
-    }
-
-    override fun onDetach() {
-        super.onDetach()
-        Log.e("TRACE", "Main onDetach")
     }
 }

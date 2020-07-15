@@ -1,19 +1,13 @@
 package com.toy.toynews.ui
 
-import android.annotation.SuppressLint
-import android.util.Log
 import android.webkit.WebViewClient
 import androidx.fragment.app.viewModels
-import androidx.navigation.NavController
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.toy.toynews.R
 import com.toy.toynews.base.BaseFragment
-import com.toy.toynews.viewmodel.MainViewModel
 import com.toy.toynews.viewmodel.WebViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_web_view.*
-import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 @AndroidEntryPoint
 class WebViewFragment : BaseFragment<WebViewModel>() {
