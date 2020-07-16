@@ -26,6 +26,7 @@ class MainFragment : BaseFragment<MainViewModel> (){
     override fun initView() {
         if(viewModel.newsList.isEmpty()) viewModel.loadNews(country = "kr")
         main_list.adapter = MainNewsAdapter(viewModel.newsList, itemClick)
+        main_list.setHasFixedSize(true)
         viewModel.isLoadFinished.observe(this, Observer {
             main_list.adapter = MainNewsAdapter(viewModel.newsList, itemClick)
         })
