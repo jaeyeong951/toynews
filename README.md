@@ -19,4 +19,5 @@
 - Motion Layout 
 - and Kotlin
 
-![](https://media.giphy.com/media/jtnmaMxTYgLftrXk3T/giphy.gif)
+## Preview
+![](https://media.giphy.com/media/XeGsYyeVWpdB2QIcIR/giphy.gif)              ![](https://media.giphy.com/media/mDSnWMs9skgzecgm3u/giphy.gif)
