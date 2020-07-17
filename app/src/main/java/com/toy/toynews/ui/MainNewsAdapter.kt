@@ -17,7 +17,8 @@ import kotlinx.android.synthetic.main.news_item.*
 import kotlinx.android.synthetic.main.news_item.view.*
 import java.lang.Exception
 
-class MainNewsAdapter(private val newsList: ArrayList<Article>, val listener: OnItemClickListener) : RecyclerView.Adapter<MainNewsAdapter.ViewHolder>(){
+class MainNewsAdapter(private val newsList: ArrayList<Article>,
+                      private val listener: OnItemClickListener) : RecyclerView.Adapter<MainNewsAdapter.ViewHolder>(){
     interface OnItemClickListener {
         fun onItemClick(v: View, position: Int)
     }

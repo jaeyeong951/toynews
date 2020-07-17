@@ -2,6 +2,7 @@ package com.toy.toynews.ui
 
 import android.util.Log
 import android.view.View
+import android.view.animation.AnimationUtils
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.fragment.app.viewModels
@@ -23,12 +24,15 @@ class MainFragment : BaseFragment<MainViewModel> (){
 
     private var savedSpinnerPosition = 0
 
+    private lateinit var mainNewsAdapter: MainNewsAdapter
+
     override fun initView() {
+        mainNewsAdapter = MainNewsAdapter(viewModel.newsList, itemClick)
+        main_list.adapter = mainNewsAdapter
         if(viewModel.newsList.isEmpty()) viewModel.loadNews(country = "kr")
-        main_list.adapter = MainNewsAdapter(viewModel.newsList, itemClick)
         main_list.setHasFixedSize(true)
         viewModel.isLoadFinished.observe(this, Observer {
-            main_list.adapter = MainNewsAdapter(viewModel.newsList, itemClick)
+            mainNewsAdapter.notifyDataSetChanged()
         })
         activity?.let {
             var country = "kr"

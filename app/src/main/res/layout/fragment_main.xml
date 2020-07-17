@@ -40,5 +40,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/main_spinner"
-        tools:listitem="@layout/news_item" />
+        tools:listitem="@layout/news_item"
+        android:layoutAnimation="@anim/layout_animation_fall_down"/>
 </androidx.constraintlayout.motion.widget.MotionLayout>
