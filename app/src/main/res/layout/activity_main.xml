@@ -15,7 +15,7 @@
             android:id="@+id/main_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/main_title"
+            android:text=""
             android:textStyle="bold"
             android:textSize="20sp"
             android:gravity="center"

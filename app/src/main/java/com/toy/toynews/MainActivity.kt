@@ -1,10 +1,12 @@
 package com.toy.toynews
 
 import android.content.Context
+import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.navigation.fragment.NavHostFragment
@@ -12,12 +14,20 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.view.*
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        when(resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK){
+//            Configuration.UI_MODE_NIGHT_YES ->
+//
+//            Configuration.UI_MODE_NIGHT_NO ->
+
+        }
 
         this.window.apply {
             //decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
@@ -113,7 +123,8 @@ class MainActivity : AppCompatActivity() {
                     main_toolbar.visibility = View.GONE
                 }
                 R.id.webViewFragment -> {
-                    main_toolbar.visibility = View.GONE
+                    main_toolbar.visibility = View.VISIBLE
+                    main_toolbar.main_title.text = ""
                 }
                 else->{
                     main_toolbar.visibility = View.VISIBLE
