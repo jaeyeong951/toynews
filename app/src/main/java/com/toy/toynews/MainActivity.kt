@@ -125,6 +125,9 @@ class MainActivity : AppCompatActivity() {
                 R.id.webViewFragment -> {
                     main_toolbar.visibility = View.VISIBLE
                     main_toolbar.main_title.text = ""
+                    main_toolbar.setNavigationOnClickListener {
+                        onBackPressed()
+                    }
                 }
                 else->{
                     main_toolbar.visibility = View.VISIBLE
