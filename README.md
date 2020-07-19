@@ -17,7 +17,7 @@
 - Navigation Component
 - Single Activity
 - Motion Layout 
-- and Kotlin
+- with Kotlin
 
 ## Preview
-![](https://media.giphy.com/media/XeGsYyeVWpdB2QIcIR/giphy.gif)              ![](https://media.giphy.com/media/mDSnWMs9skgzecgm3u/giphy.gif)
+![](https://media.giphy.com/media/XeGsYyeVWpdB2QIcIR/giphy.gif)              ![](https://media.giphy.com/media/iCk3VNo45o106NYbuI/giphy.gif)
