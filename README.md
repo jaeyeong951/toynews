@@ -8,7 +8,6 @@
 
 ### This news application is meant to be a good example to help people who want to build modern android application or refactor their architecture.
 
----
 
 ## Built With 🔧
 
