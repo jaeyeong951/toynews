@@ -28,7 +28,7 @@
 - [Motion Layout](https://developer.android.com/training/constraint-layout/motionlayout)
 - with [Kotlin](https://kotlinlang.org/)
 
-    ![ToyNews%20abc23ddbfa2643e6a0f1cbc0a89ccf19/kotlin.png](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/945e8d3f-f913-497d-a83f-8fdfc12f4502/kotlin.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45O3KS52Y5%2F20200720%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20200720T150637Z&X-Amz-Expires=86400&X-Amz-Signature=69822fc62533a60e37d8f4ba4f04c819c88bd82892c4a97bfd13b43dd40bf1ac&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22kotlin.png%22)
+<img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/945e8d3f-f913-497d-a83f-8fdfc12f4502/kotlin.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45O3KS52Y5%2F20200720%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20200720T150637Z&X-Amz-Expires=86400&X-Amz-Signature=69822fc62533a60e37d8f4ba4f04c819c88bd82892c4a97bfd13b43dd40bf1ac&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22kotlin.png%22" width=600>
 
 ## Preview
 ![](https://media.giphy.com/media/XeGsYyeVWpdB2QIcIR/giphy.gif)              ![](https://media.giphy.com/media/iCk3VNo45o106NYbuI/giphy.gif)
