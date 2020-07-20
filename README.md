@@ -6,9 +6,9 @@
 
 ### This is an Android Application provides news from various countries and sources.
 
-### This news application is meant to be a good example to help people who want to build modern android application or refactor their architecture.
+### This news application is meant to be a good example to help people who want to build modern android application or refactor their architecture.    
 
-
+  
 ## Built With 🔧
 
 - MVVM architecture pattern - THis application uses MVVM (Model-View-VIewModel) architecture.
