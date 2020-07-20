@@ -10,7 +10,7 @@
 
 ---
 
-## Keywords
+## Built with 🔧
 - MVVM architecture pattern
 - DI with Hilt
 - RxJava
