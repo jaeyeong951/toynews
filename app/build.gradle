@@ -10,7 +10,7 @@ android {
     buildToolsVersion "29.0.3"
 
     defaultConfig {
-        applicationId "com.team4.bookreview"
+        applicationId "com.toy.toynews"
         minSdkVersion 24
         targetSdkVersion 30
         versionCode 1
