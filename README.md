@@ -25,6 +25,7 @@
 - [Navigation Component](https://developer.android.com/guide/navigation/navigation-getting-started) - Navigation refers to the interactions that allow users to navigate across, into, and back out from the different pieces of content within your app.
 - [Single Activity](https://medium.com/rosberryapps/a-single-activity-android-application-why-not-fa2a5458a099)
 - [Motion Layout](https://developer.android.com/training/constraint-layout/motionlayout)
+- [Dark Theme Support] - This application's color theme is switched between light and dark theme according to user's setting.
 - with [Kotlin](https://kotlinlang.org/)
 
     <img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/945e8d3f-f913-497d-a83f-8fdfc12f4502/kotlin.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45O3KS52Y5%2F20200720%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20200720T150637Z&X-Amz-Expires=86400&X-Amz-Signature=69822fc62533a60e37d8f4ba4f04c819c88bd82892c4a97bfd13b43dd40bf1ac&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22kotlin.png%22" width=600>
