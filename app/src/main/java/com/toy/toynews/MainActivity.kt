@@ -2,9 +2,12 @@ package com.toy.toynews
 
 import android.content.Context
 import android.content.res.Configuration
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.WindowInsetsController
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
@@ -23,10 +26,17 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         when(resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK){
-//            Configuration.UI_MODE_NIGHT_YES ->
-//
-//            Configuration.UI_MODE_NIGHT_NO ->
-
+            Configuration.UI_MODE_NIGHT_YES ->{
+                window.navigationBarColor = baseContext.getColor(R.color.background)
+                window.statusBarColor = baseContext.getColor(R.color.background)
+            }
+            Configuration.UI_MODE_NIGHT_NO ->{
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                    window.decorView.systemUiVisibility = WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
+                }
+                else window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+                window.navigationBarColor = baseContext.getColor(R.color.transparent)
+            }
         }
 
         this.window.apply {

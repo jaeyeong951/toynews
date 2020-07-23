@@ -33,6 +33,7 @@ class MainFragment : BaseFragment<MainViewModel> (){
         main_list.setHasFixedSize(true)
         viewModel.isLoadFinished.observe(this, Observer {
             mainNewsAdapter.notifyDataSetChanged()
+            Log.e("singleLiveEvent","OBSERVE")
         })
         activity?.let {
             var country = "kr"

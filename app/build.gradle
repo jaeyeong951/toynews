@@ -54,24 +54,24 @@ dependencies {
     implementation "androidx.navigation:navigation-ui-ktx:2.3.0"
 
     // koin
-    implementation 'org.koin:koin-androidx-scope:2.0.1'
-    implementation 'org.koin:koin-androidx-viewmodel:2.0.1'
-    implementation 'org.koin:koin-androidx-ext:2.0.1'
-    implementation 'org.koin:koin-android:2.0.1'
-    implementation 'org.koin:koin-core:2.0.1'
-    implementation 'org.koin:koin-core-ext:2.0.1'
-    testImplementation 'org.koin:koin-test:2.0.1'
+    implementation 'org.koin:koin-androidx-scope:2.1.4'
+    implementation 'org.koin:koin-androidx-viewmodel:2.1.4'
+    implementation 'org.koin:koin-androidx-ext:2.1.4'
+    implementation 'org.koin:koin-android:2.1.4'
+    implementation 'org.koin:koin-core:2.1.4'
+    implementation 'org.koin:koin-core-ext:2.1.4'
+    testImplementation 'org.koin:koin-test:2.1.4'
 
     // retrofit
-    implementation 'com.squareup.retrofit2:retrofit:2.7.2'
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-scalars:2.7.2'
-    implementation 'com.squareup.retrofit2:converter-gson:2.7.2'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation 'com.squareup.retrofit2:converter-simplexml:2.7.2'
-    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.7.2'
-    implementation 'com.squareup.retrofit2:retrofit-mock:2.7.2'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.9.0'
+    implementation 'com.squareup.retrofit2:retrofit-mock:2.9.0'
 
     //okhttp
-    implementation 'com.squareup.okhttp3:logging-interceptor:4.7.2'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.8.0'
 
     // rxjava
     implementation 'io.reactivex.rxjava2:rxjava:2.2.19'
