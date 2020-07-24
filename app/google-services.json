@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "749335084213",
+    "firebase_url": "https://toynews-7c2cd.firebaseio.com",
+    "project_id": "toynews-7c2cd",
+    "storage_bucket": "toynews-7c2cd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:749335084213:android:b577fcde045d6e900712fc",
+        "android_client_info": {
+          "package_name": "com.toy.toynews"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "749335084213-cq2fdsv1qam6ikh7b73qgdleo77rsh9g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3D8JdvKA791aIKjdT8zG-lifPJSCcD4E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "749335084213-cq2fdsv1qam6ikh7b73qgdleo77rsh9g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
