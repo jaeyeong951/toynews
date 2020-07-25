@@ -33,6 +33,9 @@
 ## Preview
 ![](https://media.giphy.com/media/SU2EFUMlTaGLZ9kane/giphy.gif)
 
+## You can find this app on [play store!!](https://play.google.com/store/apps/details?id=com.toy.toynews)
+
+
 ## License
 ```
 MIT License
