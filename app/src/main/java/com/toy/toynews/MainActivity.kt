@@ -1,26 +1,63 @@
 package com.toy.toynews
 
+import android.content.BroadcastReceiver
 import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
 import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.WindowInsetsController
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
+import com.google.android.gms.common.ConnectionResult
+import com.google.android.gms.common.GoogleApiAvailability
+import com.google.firebase.iid.FirebaseInstanceId
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.view.*
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+    private val messageReceiver : BroadcastReceiver = object : BroadcastReceiver(){
+        override fun onReceive(context: Context?, intent: Intent?) {
+            Log.e("LOG", "THIS IS BACKGROUND?!")
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        if (checkGooglePlayServices()) {
+            //DO NOTHING
+        } else {
+            //You won't be able to send notifications to this device
+            Log.e("LOG", "Device doesn't have google play services")
+        }
+        FirebaseInstanceId.getInstance().instanceId.addOnCompleteListener { task->
+            if(task.isSuccessful){
+                task.result?.let{
+                    Log.d("test", it.token)
+                }
+            }
+        }
+        LocalBroadcastManager.getInstance(this).registerReceiver(messageReceiver, IntentFilter("DATA"))
+    }
+
+    override fun onStop() {
+        super.onStop()
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(messageReceiver)
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -44,10 +81,10 @@ class MainActivity : AppCompatActivity() {
             //statusBarColor = resources.getColor(R.color.colorPrimaryDark)
         }
 
-        setSupportActionBar(main_toolbar)
-
         val host = nav_host_fragment as NavHostFragment
         val navController = host.navController
+
+        setSupportActionBar(main_toolbar)
 
         supportFragmentManager.registerFragmentLifecycleCallbacks(object :
             FragmentManager.FragmentLifecycleCallbacks() {
@@ -138,12 +175,28 @@ class MainActivity : AppCompatActivity() {
                     main_toolbar.setNavigationOnClickListener {
                         onBackPressed()
                     }
+                    //main_toolbar.setNavigationIcon(R.drawable.ic_application)
                 }
                 else->{
                     main_toolbar.visibility = View.VISIBLE
                     supportActionBar?.show()
                 }
             }
+        }
+    }
+
+    private fun checkGooglePlayServices(): Boolean {
+        // 1
+        val status = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(this)
+        // 2
+        return if (status != ConnectionResult.SUCCESS) {
+            Log.e("LOG", "Error")
+            // ask user to update google play services and manage the error.
+            false
+        } else {
+            // 3
+            Log.e("LOG", "Google play services updated")
+            true
         }
     }
 }

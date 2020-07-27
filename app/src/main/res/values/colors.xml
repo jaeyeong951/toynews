@@ -7,4 +7,5 @@
     <color name="font_primary">#000000</color>
     <color name="font_secondary">#666666</color>
     <color name="transparent">#00000000</color>
+    <color name="light_gray">#dedede</color>
 </resources>
