@@ -11,7 +11,7 @@
   
 ## Built With 🔧
 
-- MVVM architecture pattern - THis application uses MVVM (Model-View-VIewModel) architecture.
+- MVVM architecture pattern - THis application uses MVVM (Model-View-ViewModel) architecture.
 
     ![ToyNews%20abc23ddbfa2643e6a0f1cbc0a89ccf19/Untitled.png](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/4b0ca873-9dc6-4445-9760-80af98626351/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45O3KS52Y5%2F20200720%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20200720T150604Z&X-Amz-Expires=86400&X-Amz-Signature=b50b417c65a4ebaae4310973bc605692ba5fd0e1d9236dba5ed1175aca3e4584&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22)
 
