@@ -159,7 +159,7 @@ class MainActivity : AppCompatActivity() {
 
         }, true)
 
-        var appBarConfiguration  =
+        val appBarConfiguration  =
             AppBarConfiguration(setOf(R.id.mainFragment))
 
         setupActionBarWithNavController(navController, appBarConfiguration)
