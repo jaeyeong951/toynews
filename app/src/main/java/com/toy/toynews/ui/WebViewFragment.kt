@@ -3,6 +3,7 @@ package com.toy.toynews.ui
 import android.webkit.WebViewClient
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
+import com.google.android.material.transition.MaterialContainerTransform
 import com.toy.toynews.R
 import com.toy.toynews.base.BaseFragment
 import com.toy.toynews.viewmodel.WebViewModel
@@ -18,7 +19,9 @@ class WebViewFragment : BaseFragment<WebViewModel>() {
 
     private val url : WebViewFragmentArgs by navArgs()
 
+
     override fun initView() {
+        sharedElementEnterTransition = MaterialContainerTransform()
         webview.settings.let {
             it.javaScriptEnabled = true
             it.javaScriptCanOpenWindowsAutomatically = true

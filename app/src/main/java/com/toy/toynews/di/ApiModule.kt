@@ -7,6 +7,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityComponent
+import dagger.hilt.android.scopes.ActivityScoped
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -17,14 +18,17 @@ import retrofit2.converter.gson.GsonConverterFactory
 @InstallIn(ActivityComponent::class)
 object ApiModule {
 
+    @ActivityScoped
     @Provides
     fun provideNewsRepository(newsService: NewsService) : NewsRepository{
         return NewsRepositoryImpl(newsService)
     }
 
+    @ActivityScoped
     @Provides
     fun provideNewsService(retrofit: Retrofit):NewsService = retrofit.create(NewsService::class.java)
 
+    @ActivityScoped
     @Provides
     fun provideNewsApiRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder().baseUrl("https://newsapi.org").client(okHttpClient)
@@ -33,6 +37,7 @@ object ApiModule {
                 RxJava2CallAdapterFactory.create()).build()
     }
 
+    @ActivityScoped
     @Provides
     fun provideOkHttpClient(): OkHttpClient {
         val httpClientBuilder = OkHttpClient().newBuilder()

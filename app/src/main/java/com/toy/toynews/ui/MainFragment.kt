@@ -8,7 +8,9 @@ import android.widget.ArrayAdapter
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.transition.Hold
 import com.toy.toynews.R
 import com.toy.toynews.base.BaseFragment
 import com.toy.toynews.viewmodel.MainViewModel
@@ -17,7 +19,7 @@ import kotlinx.android.synthetic.main.fragment_main.*
 
 @AndroidEntryPoint
 class MainFragment : BaseFragment<MainViewModel> (){
-    override val viewModel: MainViewModel by viewModels()
+    override val viewModel: MainViewModel by viewModels(ownerProducer = {findNavController().getViewModelStoreOwner(R.id.navigation)})
 
     override val layoutResourceId: Int
         get() = R.layout.fragment_main
@@ -27,6 +29,7 @@ class MainFragment : BaseFragment<MainViewModel> (){
     private lateinit var mainNewsAdapter: MainNewsAdapter
 
     override fun initView() {
+        exitTransition = Hold()
         mainNewsAdapter = MainNewsAdapter(viewModel.newsList, itemClick)
         main_list.adapter = mainNewsAdapter
         if(viewModel.newsList.isEmpty()) viewModel.loadNews(country = "kr")
@@ -85,9 +88,10 @@ class MainFragment : BaseFragment<MainViewModel> (){
     }
     private val itemClick = object : MainNewsAdapter.OnItemClickListener {
         override fun onItemClick(v: View, position: Int) {
+            val extras = FragmentNavigatorExtras(view!! to "shared_element_container")
             val action
                     = MainFragmentDirections.actionMainFragmentToWebViewFragment(viewModel.newsList[position].url)
-            findNavController().navigate(action)
+            findNavController().navigate(action, extras)
         }
     }
 }
