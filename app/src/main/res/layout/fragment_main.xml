@@ -5,6 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.MainFragment"
+    android:transitionGroup="true"
     app:layoutDescription="@xml/toolbar_motion">
     <TextView
         android:id="@+id/main_frag_title"
@@ -41,6 +42,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/main_spinner"
-        tools:listitem="@layout/news_item"
-        android:layoutAnimation="@anim/layout_animation_fall_down"/>
+        tools:listitem="@layout/news_item"/>
 </androidx.constraintlayout.motion.widget.MotionLayout>

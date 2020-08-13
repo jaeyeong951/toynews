@@ -1,21 +1,26 @@
 package com.toy.toynews.ui
 
+import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.transition.Hold
+import com.google.android.material.transition.MaterialElevationScale
+import com.google.android.material.transition.MaterialFadeThrough
 import com.toy.toynews.R
 import com.toy.toynews.base.BaseFragment
 import com.toy.toynews.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_main.*
+import kotlinx.android.synthetic.main.news_item.view.*
 
 @AndroidEntryPoint
 class MainFragment : BaseFragment<MainViewModel> (){
@@ -29,7 +34,7 @@ class MainFragment : BaseFragment<MainViewModel> (){
     private lateinit var mainNewsAdapter: MainNewsAdapter
 
     override fun initView() {
-        exitTransition = Hold()
+        exitTransition = MaterialFadeThrough()
         mainNewsAdapter = MainNewsAdapter(viewModel.newsList, itemClick)
         main_list.adapter = mainNewsAdapter
         if(viewModel.newsList.isEmpty()) viewModel.loadNews(country = "kr")
@@ -88,10 +93,9 @@ class MainFragment : BaseFragment<MainViewModel> (){
     }
     private val itemClick = object : MainNewsAdapter.OnItemClickListener {
         override fun onItemClick(v: View, position: Int) {
-            val extras = FragmentNavigatorExtras(view!! to "shared_element_container")
             val action
                     = MainFragmentDirections.actionMainFragmentToWebViewFragment(viewModel.newsList[position].url)
-            findNavController().navigate(action, extras)
+            findNavController().navigate(action)
         }
     }
 }

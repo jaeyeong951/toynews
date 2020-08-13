@@ -1,9 +1,13 @@
 package com.toy.toynews.ui
 
+import android.graphics.Color
+import android.os.Bundle
 import android.webkit.WebViewClient
+import androidx.core.content.res.use
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.transition.MaterialContainerTransform
+import com.google.android.material.transition.MaterialFadeThrough
 import com.toy.toynews.R
 import com.toy.toynews.base.BaseFragment
 import com.toy.toynews.viewmodel.WebViewModel
@@ -19,9 +23,8 @@ class WebViewFragment : BaseFragment<WebViewModel>() {
 
     private val url : WebViewFragmentArgs by navArgs()
 
-
     override fun initView() {
-        sharedElementEnterTransition = MaterialContainerTransform()
+        enterTransition = MaterialFadeThrough()
         webview.settings.let {
             it.javaScriptEnabled = true
             it.javaScriptCanOpenWindowsAutomatically = true

@@ -3,11 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    android:transitionName="shared_element_container"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.WebViewFragment">
     <WebView
         android:id="@+id/webview"
+        android:transitionName="end_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
