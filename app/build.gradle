@@ -100,6 +100,9 @@ dependencies {
     //coil
     implementation "io.coil-kt:coil:0.11.0"
 
+    //glide
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+
     //hilt
     implementation "com.google.dagger:hilt-android:2.28-alpha"
     kapt "com.google.dagger:hilt-android-compiler:2.28-alpha"
