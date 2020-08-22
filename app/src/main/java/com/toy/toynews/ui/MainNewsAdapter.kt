@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import coil.ImageLoader
 import coil.api.load
 import coil.target.ViewTarget
 import coil.transform.BlurTransformation
@@ -53,32 +54,40 @@ class MainNewsAdapter(private val newsList: ArrayList<Article>,
 //                img = img.replace("http","https")
 //            }
             holder.item_date.text = item.publishedAt.substringBefore("T")
-
-            holder.item_image.load(img) {
-                holder.item_loading.visibility = View.GONE
-                holder.item_image.visibility = View.VISIBLE
-                error(R.drawable.default_img)
-            }
-//            if(img!!.isEmpty()){
-//                //Do Nothing
+//            holder.item_image.load(img) {
+////                holder.item_loading.visibility = View.GONE
+////                holder.item_image.visibility = View.VISIBLE
+////                error(R.drawable.default_img)
+//                target(
+//                    onSuccess = {
+//                        holder.item_loading.visibility = View.GONE
+//                        holder.item_image.visibility = View.VISIBLE
+//                    },
+//                    onError = {
+//                        Log.e("IMAGE LOADING ERROR", item.title)
+//                    }
+//                ).build()
 //            }
-//            else Picasso.get().load(img).into(holder.item_image, object : Callback{
-//                override fun onSuccess() {
-//                    //Log.e("Image Load Success!",img)
-//                    holder.item_loading.visibility = View.GONE
-//                    holder.item_image.visibility = View.VISIBLE
-//                }
-//                override fun onError(e: Exception?) {
-//                    Log.e("Image Load Failed :(",img)
-//                    Log.e("Failed title", item.title)
-//                    Log.e("TAG", e.toString())
-//                    //Picasso.get().load(R.drawable.default_img).into(holder.item_image)
-//                    //holder.item_image.load(R.drawable.default_img)
-//                    holder.item_image.load(R.drawable.default_img)
-//                    holder.item_loading.visibility = View.GONE
-//                    holder.item_image.visibility = View.VISIBLE
-//                }
-//            })
+            if(img!!.isEmpty()){
+                //Do Nothing
+            }
+            else Picasso.get().load(img).into(holder.item_image, object : Callback{
+                override fun onSuccess() {
+                    //Log.e("Image Load Success!",img)
+                    holder.item_loading.visibility = View.GONE
+                    holder.item_image.visibility = View.VISIBLE
+                }
+                override fun onError(e: Exception?) {
+                    Log.e("Image Load Failed :(",img)
+                    Log.e("Failed title", item.title)
+                    Log.e("TAG", e.toString())
+                    //Picasso.get().load(R.drawable.default_img).into(holder.item_image)
+                    //holder.item_image.load(R.drawable.default_img)
+                    holder.item_image.load(R.drawable.default_img)
+                    holder.item_loading.visibility = View.GONE
+                    holder.item_image.visibility = View.VISIBLE
+                }
+            })
             holder.view.setOnClickListener {
                 listener.onItemClick(holder.itemView, position)
             }
