@@ -34,7 +34,9 @@ class MainFragment : BaseFragment<MainViewModel> (){
     private lateinit var mainNewsAdapter: MainNewsAdapter
 
     override fun initView() {
-        exitTransition = MaterialFadeThrough()
+        postponeEnterTransition()
+        view?.doOnPreDraw { startPostponedEnterTransition() }
+        //exitTransition = MaterialFadeThrough()
         mainNewsAdapter = MainNewsAdapter(viewModel.newsList, itemClick)
         main_list.adapter = mainNewsAdapter
         if(viewModel.newsList.isEmpty()) viewModel.loadNews(country = "kr")
@@ -50,9 +52,7 @@ class MainFragment : BaseFragment<MainViewModel> (){
                 resources.getStringArray(R.array.countries))
             main_spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                 override fun onNothingSelected(parent: AdapterView<*>?) {
-                    TODO("Not yet implemented")
                 }
-
                 override fun onItemSelected(
                     parent: AdapterView<*>?,
                     view: View?,
@@ -95,7 +95,7 @@ class MainFragment : BaseFragment<MainViewModel> (){
         override fun onItemClick(v: View, position: Int) {
             val action
                     = MainFragmentDirections.actionMainFragmentToWebViewFragment(viewModel.newsList[position].url)
-            findNavController().navigate(action)
+                findNavController().navigate(action, FragmentNavigatorExtras(v to viewModel.newsList[position].url))
         }
     }
 }

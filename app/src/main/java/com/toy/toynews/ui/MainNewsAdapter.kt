@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
+import androidx.core.view.ViewCompat
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import coil.ImageLoader
@@ -88,6 +89,7 @@ class MainNewsAdapter(private val newsList: ArrayList<Article>,
                     holder.item_image.visibility = View.VISIBLE
                 }
             })
+            ViewCompat.setTransitionName(holder.item_container, item.url)
             holder.view.setOnClickListener {
                 listener.onItemClick(holder.itemView, position)
             }

@@ -4,6 +4,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.webkit.WebViewClient
 import androidx.core.content.res.use
+import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.transition.MaterialContainerTransform
@@ -21,10 +22,20 @@ class WebViewFragment : BaseFragment<WebViewModel>() {
     override val layoutResourceId: Int
         get() = R.layout.fragment_web_view
 
-    private val url : WebViewFragmentArgs by navArgs()
+    private val args : WebViewFragmentArgs by navArgs()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        sharedElementEnterTransition = MaterialContainerTransform().apply {
+            duration = 500L
+            isElevationShadowEnabled = true
+            setAllContainerColors(requireContext().getColor(R.color.background))
+        }
+    }
 
     override fun initView() {
-        enterTransition = MaterialFadeThrough()
+        webview_container.transitionName = args.url
+        //enterTransition = MaterialFadeThrough()
         webview.settings.let {
             it.javaScriptEnabled = true
             it.javaScriptCanOpenWindowsAutomatically = true
@@ -35,8 +46,11 @@ class WebViewFragment : BaseFragment<WebViewModel>() {
         }
 
         webview.fitsSystemWindows = true
-        webview.loadUrl(url.url)
+        webview.loadUrl(args.url)
         webview.webViewClient = WebViewClient()
 
+        address_map_fab_btn.setOnClickListener {
+            requireActivity().onBackPressed()
+        }
     }
 }

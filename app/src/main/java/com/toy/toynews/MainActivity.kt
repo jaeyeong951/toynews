@@ -170,7 +170,7 @@ class MainActivity : AppCompatActivity() {
                     main_toolbar.visibility = View.GONE
                 }
                 R.id.webViewFragment -> {
-                    main_toolbar.visibility = View.VISIBLE
+                    main_toolbar.visibility = View.GONE
                     main_toolbar.main_title.text = ""
                     main_toolbar.setNavigationOnClickListener {
                         onBackPressed()
