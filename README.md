@@ -1,6 +1,6 @@
 ![](https://github.com/jaeyeong951/toynews/blob/master/profile.png?raw=true)
 
-# Toy News
+# Toy News ![](https://app.bitrise.io/app/8ad8ec510a942092/status.svg?token=lhF6xv2nfneKrz2itQzQ6w)
 
 
 
