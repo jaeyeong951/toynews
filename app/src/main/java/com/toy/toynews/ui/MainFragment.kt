@@ -1,37 +1,34 @@
 package com.toy.toynews.ui
 
-import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
-import android.view.animation.AnimationUtils
+import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
-import com.google.android.material.transition.Hold
-import com.google.android.material.transition.MaterialElevationScale
-import com.google.android.material.transition.MaterialFadeThrough
 import com.toy.toynews.R
 import com.toy.toynews.base.BaseFragment
+import com.toy.toynews.databinding.FragmentMainBinding
 import com.toy.toynews.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_main.*
-import kotlinx.android.synthetic.main.news_item.view.*
 
 @AndroidEntryPoint
-class MainFragment : BaseFragment<MainViewModel> (){
+class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel> (){
     override val viewModel: MainViewModel by viewModels(ownerProducer = {findNavController().getViewModelStoreOwner(R.id.navigation)})
-
-    override val layoutResourceId: Int
-        get() = R.layout.fragment_main
 
     private var savedSpinnerPosition = 0
 
     private lateinit var mainNewsAdapter: MainNewsAdapter
+
+    override fun inflateBinder(inflater: LayoutInflater, container: ViewGroup?) {
+        _binding = FragmentMainBinding.inflate(inflater, container, false)
+    }
 
     override fun initView() {
         postponeEnterTransition()

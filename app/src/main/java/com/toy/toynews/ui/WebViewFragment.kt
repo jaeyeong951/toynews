@@ -1,28 +1,28 @@
 package com.toy.toynews.ui
 
-import android.graphics.Color
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.ViewGroup
 import android.webkit.WebViewClient
-import androidx.core.content.res.use
-import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.transition.MaterialContainerTransform
-import com.google.android.material.transition.MaterialFadeThrough
 import com.toy.toynews.R
 import com.toy.toynews.base.BaseFragment
+import com.toy.toynews.databinding.FragmentWebViewBinding
 import com.toy.toynews.viewmodel.WebViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_web_view.*
 
 @AndroidEntryPoint
-class WebViewFragment : BaseFragment<WebViewModel>() {
+class WebViewFragment : BaseFragment<FragmentWebViewBinding, WebViewModel>() {
     override val viewModel: WebViewModel by viewModels()
 
-    override val layoutResourceId: Int
-        get() = R.layout.fragment_web_view
-
     private val args : WebViewFragmentArgs by navArgs()
+
+    override fun inflateBinder(inflater: LayoutInflater, container: ViewGroup?) {
+        _binding = FragmentWebViewBinding.inflate(inflater, container, false)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

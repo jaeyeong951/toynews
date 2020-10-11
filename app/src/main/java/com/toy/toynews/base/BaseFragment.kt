@@ -6,17 +6,22 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.viewbinding.ViewBinding
 import com.toy.toynews.utils.LoadingIndicator
 import dagger.hilt.android.AndroidEntryPoint
 
-abstract class BaseFragment<VM : BaseViewModel> : Fragment(){
+abstract class BaseFragment<DB : ViewBinding, VM : BaseViewModel> : Fragment(){
     private var mLoadingIndicator: Dialog? = null
 
     abstract val viewModel : VM
+    private lateinit var mBinding: DB
 
-    abstract val layoutResourceId: Int
+    var _binding: DB? = null
+    private val binding get() = _binding!!
 
     abstract fun initView()
 
@@ -25,16 +30,26 @@ abstract class BaseFragment<VM : BaseViewModel> : Fragment(){
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        inflateBinder(inflater, container)
         mLoadingIndicator = context?.let { LoadingIndicator(it) }
         Log.e("onCreateView","onCreateView")
 //        return super.onCreateView(inflater, container, savedInstanceState)
-        return inflater.inflate(layoutResourceId, container, false)
+        return binding.root
+        //return inflater.inflate(layoutResourceId, container, false)
     }
+
+    abstract fun inflateBinder(inflater: LayoutInflater,
+                               container: ViewGroup?)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         loadingIndicatorObserving()
         initView()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     private fun loadingIndicatorObserving() {
