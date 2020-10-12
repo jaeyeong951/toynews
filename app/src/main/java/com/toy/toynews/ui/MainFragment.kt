@@ -16,7 +16,6 @@ import com.toy.toynews.base.BaseFragment
 import com.toy.toynews.databinding.FragmentMainBinding
 import com.toy.toynews.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_main.*
 
 @AndroidEntryPoint
 class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel> (){
@@ -35,19 +34,20 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel> (){
         view?.doOnPreDraw { startPostponedEnterTransition() }
         //exitTransition = MaterialFadeThrough()
         mainNewsAdapter = MainNewsAdapter(viewModel.newsList, itemClick)
-        main_list.adapter = mainNewsAdapter
+        //_binding!!.root.main_list.adapter = mainNewsAdapter
+        _binding!!.mainList.adapter = mainNewsAdapter
         if(viewModel.newsList.isEmpty()) viewModel.loadNews(country = "kr")
-        main_list.setHasFixedSize(true)
+        _binding!!.mainList.setHasFixedSize(true)
         viewModel.isLoadFinished.observe(this, Observer {
             mainNewsAdapter.notifyDataSetChanged()
             Log.e("singleLiveEvent","OBSERVE")
         })
         activity?.let {
             var country = "kr"
-            main_spinner.adapter = ArrayAdapter(it,
+            _binding!!.mainSpinner.adapter = ArrayAdapter(it,
                 R.layout.spinner_item,
                 resources.getStringArray(R.array.countries))
-            main_spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            _binding!!.mainSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                 override fun onNothingSelected(parent: AdapterView<*>?) {
                 }
                 override fun onItemSelected(

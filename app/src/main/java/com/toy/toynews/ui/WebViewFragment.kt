@@ -12,7 +12,6 @@ import com.toy.toynews.base.BaseFragment
 import com.toy.toynews.databinding.FragmentWebViewBinding
 import com.toy.toynews.viewmodel.WebViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_web_view.*
 
 @AndroidEntryPoint
 class WebViewFragment : BaseFragment<FragmentWebViewBinding, WebViewModel>() {
@@ -34,9 +33,9 @@ class WebViewFragment : BaseFragment<FragmentWebViewBinding, WebViewModel>() {
     }
 
     override fun initView() {
-        webview_container.transitionName = args.url
+        _binding!!.webview.transitionName = args.url
         //enterTransition = MaterialFadeThrough()
-        webview.settings.let {
+        _binding!!.webview.settings.let {
             it.javaScriptEnabled = true
             it.javaScriptCanOpenWindowsAutomatically = true
             it.setSupportZoom(true)
@@ -45,11 +44,11 @@ class WebViewFragment : BaseFragment<FragmentWebViewBinding, WebViewModel>() {
             it.domStorageEnabled = true
         }
 
-        webview.fitsSystemWindows = true
-        webview.loadUrl(args.url)
-        webview.webViewClient = WebViewClient()
+        _binding!!.webview.fitsSystemWindows = true
+        _binding!!.webview.loadUrl(args.url)
+        _binding!!.webview.webViewClient = WebViewClient()
 
-        address_map_fab_btn.setOnClickListener {
+        _binding!!.addressMapFabBtn.setOnClickListener {
             requireActivity().onBackPressed()
         }
     }

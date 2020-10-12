@@ -18,7 +18,6 @@ abstract class BaseFragment<DB : ViewBinding, VM : BaseViewModel> : Fragment(){
     private var mLoadingIndicator: Dialog? = null
 
     abstract val viewModel : VM
-    private lateinit var mBinding: DB
 
     var _binding: DB? = null
     private val binding get() = _binding!!
@@ -33,9 +32,7 @@ abstract class BaseFragment<DB : ViewBinding, VM : BaseViewModel> : Fragment(){
         inflateBinder(inflater, container)
         mLoadingIndicator = context?.let { LoadingIndicator(it) }
         Log.e("onCreateView","onCreateView")
-//        return super.onCreateView(inflater, container, savedInstanceState)
         return binding.root
-        //return inflater.inflate(layoutResourceId, container, false)
     }
 
     abstract fun inflateBinder(inflater: LayoutInflater,
