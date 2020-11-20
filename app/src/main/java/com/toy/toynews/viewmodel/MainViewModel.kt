@@ -11,8 +11,10 @@ import com.toy.toynews.utils.SingleLiveEvent
 import io.reactivex.functions.Consumer
 
 class MainViewModel @ViewModelInject constructor(private val newsRepository: NewsRepository) : BaseViewModel() {
-    private val _isLoadFinished: SingleLiveEvent<ArrayList<Article>> = SingleLiveEvent()
+    private val _isLoadFinished: MutableLiveData<ArrayList<Article>> = MutableLiveData()
     val isLoadFinished: LiveData<ArrayList<Article>> get() = _isLoadFinished
+
+    val a: LiveData<Any> = MutableLiveData<Any>()
 
     var newsList: ArrayList<Article> = ArrayList()
 

@@ -86,6 +86,10 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel> (){
             }
         }
     }
+
+    override fun onResume() {
+        super.onResume()
+    }
     private val itemClick = object : MainNewsAdapter.OnItemClickListener {
         override fun onItemClick(v: View, position: Int) {
             val action
