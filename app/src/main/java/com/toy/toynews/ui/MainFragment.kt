@@ -23,8 +23,6 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel> (){
 
     private var savedSpinnerPosition = 0
 
-    private lateinit var mainNewsAdapter: MainNewsAdapter
-
     override fun inflateBinder(inflater: LayoutInflater, container: ViewGroup?) {
         _binding = FragmentMainBinding.inflate(inflater, container, false)
     }
@@ -33,15 +31,15 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel> (){
         postponeEnterTransition()
         view?.doOnPreDraw { startPostponedEnterTransition() }
         //exitTransition = MaterialFadeThrough()
-        mainNewsAdapter = MainNewsAdapter(viewModel.newsList, itemClick)
         //_binding!!.root.main_list.adapter = mainNewsAdapter
-        _binding!!.mainList.adapter = mainNewsAdapter
+        _binding!!.mainList.adapter = MainNewsAdapter(itemClick).apply {
+            viewModel.isLoadFinished.observe(viewLifecycleOwner, Observer {
+                Log.e("singleLiveEvent","OBSERVE")
+                this.newsList = it
+            })
+        }
         if(viewModel.newsList.isEmpty()) viewModel.loadNews(country = "kr")
         _binding!!.mainList.setHasFixedSize(true)
-        viewModel.isLoadFinished.observe(this, Observer {
-            mainNewsAdapter.notifyDataSetChanged()
-            Log.e("singleLiveEvent","OBSERVE")
-        })
         activity?.let {
             var country = "kr"
             _binding!!.mainSpinner.adapter = ArrayAdapter(it,

@@ -19,16 +19,22 @@ import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import com.toy.toynews.R
 import com.toy.toynews.dto.Article
+import com.toy.toynews.dto.newsItem
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.news_item.*
 import kotlinx.android.synthetic.main.news_item.view.*
 import java.lang.Exception
 
-class MainNewsAdapter(private val newsList: ArrayList<Article>,
-                      private val listener: OnItemClickListener) : RecyclerView.Adapter<MainNewsAdapter.ViewHolder>(){
+class MainNewsAdapter(private val listener: OnItemClickListener) : RecyclerView.Adapter<MainNewsAdapter.ViewHolder>(){
     interface OnItemClickListener {
         fun onItemClick(v: View, position: Int)
     }
+
+    var newsList = emptyList<Article>()
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
 
     class ViewHolder(val view: View):RecyclerView.ViewHolder(view), LayoutContainer {
         override val containerView: View?

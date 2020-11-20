@@ -11,15 +11,10 @@ import com.toy.toynews.utils.SingleLiveEvent
 import io.reactivex.functions.Consumer
 
 class MainViewModel @ViewModelInject constructor(private val newsRepository: NewsRepository) : BaseViewModel() {
-    private val _isLoadFinished: SingleLiveEvent<Any> = SingleLiveEvent()
-    val isLoadFinished: LiveData<Any>
-        get() = _isLoadFinished
+    private val _isLoadFinished: SingleLiveEvent<ArrayList<Article>> = SingleLiveEvent()
+    val isLoadFinished: LiveData<ArrayList<Article>> get() = _isLoadFinished
 
     var newsList: ArrayList<Article> = ArrayList()
-
-    private fun newsListClear(){
-        newsList.clear()
-    }
 
     fun loadNews(keyword : String = "",
                 category : String = "",
@@ -27,11 +22,11 @@ class MainViewModel @ViewModelInject constructor(private val newsRepository: New
         apiCall(newsRepository.getNews(keyword, category, country),
         onSuccess = Consumer {
             Log.e("loadNews is Called!","country = $country")
-            newsListClear()
+            newsList.clear()
             for(i in it.articles) {
                 i.urlToImage?.let { newsList.add(i) }
             }
-            _isLoadFinished.call()
+            _isLoadFinished.postValue(newsList)
         },
         indicator = true)
     }
