@@ -14,8 +14,6 @@ class MainViewModel @ViewModelInject constructor(private val newsRepository: New
     private val _isLoadFinished: MutableLiveData<ArrayList<Article>> = MutableLiveData()
     val isLoadFinished: LiveData<ArrayList<Article>> get() = _isLoadFinished
 
-    val a: LiveData<Any> = MutableLiveData<Any>()
-
     var newsList: ArrayList<Article> = ArrayList()
 
     fun loadNews(keyword : String = "",

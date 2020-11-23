@@ -9,7 +9,7 @@ import androidx.core.view.ViewCompat
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import coil.ImageLoader
-import coil.api.load
+import coil.load
 import coil.target.ViewTarget
 import coil.transform.BlurTransformation
 import coil.transform.CircleCropTransformation
@@ -52,49 +52,43 @@ class MainNewsAdapter(private val listener: OnItemClickListener) : RecyclerView.
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         Log.e("LOG", "onBingViewHolder of position $position is called!!")
         newsList[position].let { item->
-            var img = item.urlToImage
+            val img = item.urlToImage
+
             item.title.let {
                 holder.item_title.text = it.substringBefore(" - ")
                 holder.item_source.text = it.substringAfter(" - ")
             }
-//            if(img!!.substringBefore("://") == "http"){
-//                img = img.replace("http","https")
-//            }
+
             holder.item_date.text = item.publishedAt.substringBefore("T")
-//            holder.item_image.load(img) {
-////                holder.item_loading.visibility = View.GONE
-////                holder.item_image.visibility = View.VISIBLE
-////                error(R.drawable.default_img)
-//                target(
-//                    onSuccess = {
-//                        holder.item_loading.visibility = View.GONE
-//                        holder.item_image.visibility = View.VISIBLE
-//                    },
-//                    onError = {
-//                        Log.e("IMAGE LOADING ERROR", item.title)
-//                    }
-//                ).build()
-//            }
             if(img!!.isEmpty()){
                 //Do Nothing
             }
-            else Picasso.get().load(img).into(holder.item_image, object : Callback{
-                override fun onSuccess() {
-                    //Log.e("Image Load Success!",img)
+            else {
+                holder.item_image.load(img) {
                     holder.item_loading.visibility = View.GONE
                     holder.item_image.visibility = View.VISIBLE
+                    crossfade(true)
+                    placeholder(R.drawable.default_img)
                 }
-                override fun onError(e: Exception?) {
-                    Log.e("Image Load Failed :(",img)
-                    Log.e("Failed title", item.title)
-                    Log.e("TAG", e.toString())
-                    //Picasso.get().load(R.drawable.default_img).into(holder.item_image)
-                    //holder.item_image.load(R.drawable.default_img)
-                    holder.item_image.load(R.drawable.default_img)
-                    holder.item_loading.visibility = View.GONE
-                    holder.item_image.visibility = View.VISIBLE
-                }
-            })
+            }
+
+//            Picasso.get().load(img).into(holder.item_image, object : Callback{
+//                override fun onSuccess() {
+//                    //Log.e("Image Load Success!",img)
+//                    holder.item_loading.visibility = View.GONE
+//                    holder.item_image.visibility = View.VISIBLE
+//                }
+//                override fun onError(e: Exception?) {
+//                    Log.e("Image Load Failed :(",img)
+//                    Log.e("Failed title", item.title)
+//                    Log.e("TAG", e.toString())
+//                    //Picasso.get().load(R.drawable.default_img).into(holder.item_image)
+//                    //holder.item_image.load(R.drawable.default_img)
+//                    holder.item_image.load(R.drawable.default_img)
+//                    holder.item_loading.visibility = View.GONE
+//                    holder.item_image.visibility = View.VISIBLE
+//                }
+//            })
             ViewCompat.setTransitionName(holder.item_container, item.url)
             holder.view.setOnClickListener {
                 listener.onItemClick(holder.itemView, position)

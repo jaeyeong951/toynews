@@ -31,15 +31,17 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel> (){
         postponeEnterTransition()
         view?.doOnPreDraw { startPostponedEnterTransition() }
         //exitTransition = MaterialFadeThrough()
-        //_binding!!.root.main_list.adapter = mainNewsAdapter
-        _binding!!.mainList.adapter = MainNewsAdapter(itemClick).apply {
-            viewModel.isLoadFinished.observe(viewLifecycleOwner, Observer {
-                Log.e("singleLiveEvent","OBSERVE")
-                this.newsList = it
-            })
+
+        _binding!!.mainList.apply {
+            this.adapter = MainNewsAdapter(itemClick).apply {
+                viewModel.isLoadFinished.observe(viewLifecycleOwner, Observer {
+                    this.newsList = it
+                })
+            }
+            this.setHasFixedSize(true)
         }
+
         if(viewModel.newsList.isEmpty()) viewModel.loadNews(country = "kr")
-        _binding!!.mainList.setHasFixedSize(true)
         activity?.let {
             var country = "kr"
             _binding!!.mainSpinner.adapter = ArrayAdapter(it,
@@ -87,9 +89,6 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel> (){
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-    }
     private val itemClick = object : MainNewsAdapter.OnItemClickListener {
         override fun onItemClick(v: View, position: Int) {
             val action
