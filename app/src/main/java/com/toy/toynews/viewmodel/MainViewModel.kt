@@ -14,6 +14,11 @@ class MainViewModel @ViewModelInject constructor(private val newsRepository: New
     private val _isLoadFinished: MutableLiveData<ArrayList<Article>> = MutableLiveData()
     val isLoadFinished: LiveData<ArrayList<Article>> get() = _isLoadFinished
 
+    private val _testSingleLiveData: SingleLiveEvent<Any> = SingleLiveEvent()
+    val testSingleLiveData: LiveData<Any> get() = _testSingleLiveData
+    private val _testMutableLiveData: MutableLiveData<Any> = MutableLiveData()
+    val testMutableLiveData: LiveData<Any> get() = _testMutableLiveData
+
     var newsList: ArrayList<Article> = ArrayList()
 
     fun loadNews(keyword : String = "",
@@ -29,6 +34,14 @@ class MainViewModel @ViewModelInject constructor(private val newsRepository: New
             _isLoadFinished.postValue(newsList)
         },
         indicator = true)
+    }
+
+    fun invokeSingleLiveDate() {
+        _testSingleLiveData.call()
+    }
+
+    fun invokeMutableLiveData() {
+        _testMutableLiveData.postValue(null)
     }
 
     override fun onCleared() {

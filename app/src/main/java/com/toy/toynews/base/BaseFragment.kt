@@ -42,10 +42,12 @@ abstract class BaseFragment<DB : ViewBinding, VM : BaseViewModel> : Fragment(){
         super.onViewCreated(view, savedInstanceState)
         loadingIndicatorObserving()
         initView()
+        Log.e("onViewCreated","onViewCreated")
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
+        Log.e("onDestroyView","onDestroyView")
         _binding = null
     }
 

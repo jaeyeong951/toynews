@@ -4,32 +4,15 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import androidx.core.view.ViewCompat
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import coil.ImageLoader
 import coil.load
-import coil.target.ViewTarget
-import coil.transform.BlurTransformation
-import coil.transform.CircleCropTransformation
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestListener
-import com.squareup.picasso.Callback
-import com.squareup.picasso.Picasso
 import com.toy.toynews.R
 import com.toy.toynews.dto.Article
-import com.toy.toynews.dto.newsItem
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.news_item.*
-import kotlinx.android.synthetic.main.news_item.view.*
-import java.lang.Exception
 
-class MainNewsAdapter(private val listener: OnItemClickListener) : RecyclerView.Adapter<MainNewsAdapter.ViewHolder>(){
-    interface OnItemClickListener {
-        fun onItemClick(v: View, position: Int)
-    }
-
+class MainNewsAdapter(private val listener: (View, Int) -> Unit) : RecyclerView.Adapter<MainNewsAdapter.ViewHolder>(){
     var newsList = emptyList<Article>()
         set(value) {
             field = value
@@ -37,7 +20,7 @@ class MainNewsAdapter(private val listener: OnItemClickListener) : RecyclerView.
         }
 
     class ViewHolder(val view: View):RecyclerView.ViewHolder(view), LayoutContainer {
-        override val containerView: View?
+        override val containerView: View
             get() = view
     }
 
@@ -90,9 +73,7 @@ class MainNewsAdapter(private val listener: OnItemClickListener) : RecyclerView.
 //                }
 //            })
             ViewCompat.setTransitionName(holder.item_container, item.url)
-            holder.view.setOnClickListener {
-                listener.onItemClick(holder.itemView, position)
-            }
+            holder.view.setOnClickListener { listener }
         }
     }
 }

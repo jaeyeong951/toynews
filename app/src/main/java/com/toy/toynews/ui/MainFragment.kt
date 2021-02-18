@@ -1,5 +1,6 @@
 package com.toy.toynews.ui
 
+import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import android.widget.ArrayAdapter
 import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.observe
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import com.toy.toynews.R
@@ -32,8 +34,22 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel> (){
         view?.doOnPreDraw { startPostponedEnterTransition() }
         //exitTransition = MaterialFadeThrough()
 
+        viewModel.testSingleLiveData.observe(viewLifecycleOwner) {
+            Log.e("SingleLiveData", "Observed")
+        }
+
+        viewModel.testMutableLiveData.observe(viewLifecycleOwner) {
+            Log.e("MutableLiveData", "Observed")
+        }
+
+        viewModel.invokeSingleLiveDate()
+        viewModel.invokeMutableLiveData()
+
         _binding!!.mainList.apply {
-            this.adapter = MainNewsAdapter(itemClick).apply {
+            this.adapter = MainNewsAdapter { v, position ->
+                val action = MainFragmentDirections.actionMainFragmentToWebViewFragment(viewModel.newsList[position].url)
+                findNavController().navigate(action, FragmentNavigatorExtras(v to viewModel.newsList[position].url))
+            }.apply {
                 viewModel.isLoadFinished.observe(viewLifecycleOwner, Observer {
                     this.newsList = it
                 })
@@ -89,11 +105,23 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel> (){
         }
     }
 
-    private val itemClick = object : MainNewsAdapter.OnItemClickListener {
-        override fun onItemClick(v: View, position: Int) {
-            val action
-                    = MainFragmentDirections.actionMainFragmentToWebViewFragment(viewModel.newsList[position].url)
-                findNavController().navigate(action, FragmentNavigatorExtras(v to viewModel.newsList[position].url))
-        }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        Log.e("MainFragment", "onCreate")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.e("MainFragment", "onResume")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.e("MainFragment", "onDestroy")
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        Log.e("MainFragment", "onDetach")
     }
 }
