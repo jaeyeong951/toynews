@@ -33,7 +33,7 @@ class MainNewsAdapter(private val listener: (View, Int) -> Unit) : RecyclerView.
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        Log.e("LOG", "onBingViewHolder of position $position is called!!")
+        Log.e("LOG", "onBindViewHolder of position $position is called!!")
         newsList[position].let { item->
             val img = item.urlToImage
 
@@ -73,7 +73,7 @@ class MainNewsAdapter(private val listener: (View, Int) -> Unit) : RecyclerView.
 //                }
 //            })
             ViewCompat.setTransitionName(holder.item_container, item.url)
-            holder.view.setOnClickListener { listener }
+            holder.view.setOnClickListener { listener(holder.itemView, position) }
         }
     }
 }

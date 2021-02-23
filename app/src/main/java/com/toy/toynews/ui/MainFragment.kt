@@ -55,6 +55,7 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel> (){
                 })
             }
             this.setHasFixedSize(true)
+            this.edgeEffectFactory = BounceEdgeEffectFactory()
         }
 
         if(viewModel.newsList.isEmpty()) viewModel.loadNews(country = "kr")
